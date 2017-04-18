@@ -10,6 +10,7 @@ public class BarnesServlet extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws IOException {
     resp.setContentType("text/plain");
-    resp.getWriter().println("{ \"servlet\": \"" + BarnesServlet.class.toString() + "\" }");
+    resp.getWriter().println("{ \"name\": \"Barnesly\" }");
+    resp.getWriter().println("{ \"class\": \"" + BarnesServlet.class.toString() + "\" }");
   }
 }
