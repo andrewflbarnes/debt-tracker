@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Debt Tracker</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="result">Loading /barnes servlet name...</div>
+    <div id="barnes">Loading /barnes servlet class...</div>
+
+    <script>
+$(document).ready(function() {
+  $.getJSON('/barnes', function(data) {
+    $('#result').html("Hello, " + data.name);
+    $('#barnes').html("Servlet name is, " + data.class);
+  });
+});
+    </script>
+  </body>
+</html>
