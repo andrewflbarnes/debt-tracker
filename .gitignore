@@ -33,3 +33,7 @@ buildNumber.properties
 .idea/gradle.xml
 .idea/dictionaries
 .idea/libraries
+
+\.classpath
+
+\.project

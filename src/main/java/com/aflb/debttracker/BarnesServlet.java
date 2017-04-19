@@ -6,11 +6,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class BarnesServlet extends HttpServlet {
-  @Override
-  public void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws IOException {
-    resp.setContentType("text/plain");
-    resp.getWriter().println("{ \"name\": \"Barnesly\" ,");
-    resp.getWriter().println(" \"class\": \"" + BarnesServlet.class.toString() + "\" }");
-  }
+    /**
+     * Default serialVersionUID.
+     */
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String name = req.getParameter("name");
+        resp.setContentType("text/plain");
+        resp.getWriter().println("{ \"name\": \"" + name + "\" ,");
+        resp.getWriter().println(" \"class\": \"" + BarnesServlet.class.toString() + "\" }");
+    }
 }
