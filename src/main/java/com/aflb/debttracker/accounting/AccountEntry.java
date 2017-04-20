@@ -145,22 +145,22 @@ public class AccountEntry {
      * @return
      */
     public String toJson() {
-    	StringBuilder builder = new StringBuilder(16384);
-    	
-		builder
-			.append("{")
-			.append("\"name\":\"").append(this.user).append("\"")
-			.append(",")
-			.append("\"value\":\"").append(String.format("%.2f", this.value)).append("\"")
-			.append(",")
-			.append("\"type\":\"").append(this.type).append("\"")
-			.append(",")
-			.append("\"date\":\"").append(this.date).append("\"")
-			.append(",")
-			.append("\"description\":\"").append(this.description).append("\"")
-			.append("}");
-    	
-    	return builder.toString();
+        StringBuilder builder = new StringBuilder(16384);
+        
+        builder
+            .append("{")
+            .append("\"name\":\"").append(this.user).append("\"")
+            .append(",")
+            .append("\"value\":\"").append(String.format("%.2f", this.value)).append("\"")
+            .append(",")
+            .append("\"type\":\"").append(this.type).append("\"")
+            .append(",")
+            .append("\"date\":\"").append(this.date).append("\"")
+            .append(",")
+            .append("\"description\":\"").append(this.description).append("\"")
+            .append("}");
+        
+        return builder.toString();
     }
 
     /**

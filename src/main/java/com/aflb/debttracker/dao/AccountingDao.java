@@ -50,4 +50,35 @@ public interface AccountingDao {
      *         {@link AccountingDaoFilter}
      */
     List<AccountEntry> getEntries(AccountingDaoFilter filter);
+
+    /**
+     * Get the overall balance for a {@code user}. This is the combined value of
+     * all credits and debits against the user
+     * 
+     * @param user
+     *            The {@code user} to get the balance for
+     * @return The balance of the users account
+     */
+    double getBalance(String user);
+    
+    /**
+     * Retrieve the last {@link AccountEntry} for a {@code user}
+     * 
+     * @param user
+     *            The {@code user} to get the last entry for
+     * @return
+     */
+    AccountEntry getLastEntry(String user);
+    
+    /**
+     * Retrieve the last {@link AccountEntry} for a {@code user} of the provided
+     * {@code type}
+     * 
+     * @param user
+     *            The {@code user} to get the last entry for
+     * @param type
+     *            The {@link AccountEntryType} of the last entry to retrieve
+     * @return
+     */
+    AccountEntry getLastEntry(String user, AccountEntryType type);
 }
