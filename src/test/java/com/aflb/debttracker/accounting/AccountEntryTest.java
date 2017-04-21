@@ -15,7 +15,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.aflb.debttracker.accounting.AccountEntry.AccountEntryIncompleteException;
+import com.aflb.debttracker.data.AccountEntry;
+import com.aflb.debttracker.data.AccountEntryType;
+import com.aflb.debttracker.data.AccountEntry.AccountEntryIncompleteException;
 
 /**
  * @author Barnesly
@@ -52,7 +54,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#AccountEntry(java.lang.String, double, java.util.Date, java.lang.String)}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#AccountEntry(java.lang.String, double, java.util.Date, java.lang.String)}.
      */
     @Test
     public void testAccountEntryStringDoubleDateString() {
@@ -66,7 +68,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#AccountEntry(java.lang.String, double, java.util.Date)}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#AccountEntry(java.lang.String, double, java.util.Date)}.
      */
     @Test
     public void testAccountEntryStringDoubleDate() {
@@ -79,7 +81,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#AccountEntry(java.lang.String, double, java.lang.String)}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#AccountEntry(java.lang.String, double, java.lang.String)}.
      */
     @Test
     public void testAccountEntryStringDoubleString() {
@@ -91,7 +93,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#AccountEntry(java.lang.String, double)}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#AccountEntry(java.lang.String, double)}.
      */
     @Test
     public void testAccountEntryStringDouble() {
@@ -102,7 +104,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#complete()}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#complete()}.
      */
     @Test
     public void testComplete() {
@@ -113,7 +115,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#validate()}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#validate()}.
      */
     @Test
     public void testValidatePass() {
@@ -126,7 +128,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#validate()}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#validate()}.
      */
     @Test
     public void testValidateUserFail() {
@@ -141,7 +143,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#validate()}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#validate()}.
      */
     @Test
     public void testValidateValueFail() {
@@ -156,7 +158,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#validateAndComplete()}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#validateAndComplete()}.
      */
     @Test
     public void testValidateAndComplete() {
@@ -171,7 +173,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#toJson()}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#toJson()}.
      */
     @Test
     public void testToJsonCredit() {
@@ -189,7 +191,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#toJson()}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#toJson()}.
      */
     @Test
     public void testToJsonDebit() {
@@ -207,7 +209,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#setValue(double)}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#setValue(double)}.
      */
     @Test
     public void testSetValueCredit() {
@@ -217,7 +219,7 @@ public class AccountEntryTest {
     }
 
     /**
-     * Test method for {@link com.aflb.debttracker.accounting.AccountEntry#setValue(double)}.
+     * Test method for {@link com.aflb.debttracker.data.AccountEntry#setValue(double)}.
      */
     @Test
     public void testSetValueDebit() {

@@ -2,8 +2,8 @@ package com.aflb.debttracker.dao;
 
 import java.util.Date;
 
-import com.aflb.debttracker.accounting.AccountEntry;
-import com.aflb.debttracker.accounting.AccountEntryType;
+import com.aflb.debttracker.data.AccountEntry;
+import com.aflb.debttracker.data.AccountEntryType;
 
 /**
  * @author Barnesly

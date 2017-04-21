@@ -1,4 +1,4 @@
-package com.aflb.debttracker.accounting;
+package com.aflb.debttracker.data;
 
 /**
  * @author Barnesly
