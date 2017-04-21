@@ -176,7 +176,7 @@ public class AccountEntry {
         
         builder
             .append("{")
-            .append("\"name\":\"").append(this.user).append("\"")
+            .append("\"name\":\"").append(this.user.getName()).append("\"")
             .append(",")
             .append("\"value\":\"").append(String.format("%.2f", this.value)).append("\"")
             .append(",")
