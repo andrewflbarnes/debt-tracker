@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.aflb.debttracker.data.AccountEntry;
 import com.aflb.debttracker.data.AccountEntryType;
+import com.aflb.debttracker.data.User;
 
 /**
  * @author Barnesly
@@ -12,7 +13,7 @@ import com.aflb.debttracker.data.AccountEntryType;
  *         contain multiple parameters for filtering {@link AccountEntry}s
  */
 public class AccountingDaoFilter {
-    private int user = 0;
+    private User user = null;
     private Date fromDate = null;
     private AccountEntryType type = null;
 
@@ -22,7 +23,7 @@ public class AccountingDaoFilter {
      * @return This {@link AccountingDaoFilter}
      */
     public AccountingDaoFilter reset() {
-        user = 0;
+        user = null;
         fromDate = null;
         type = null;
         return this;
@@ -31,7 +32,7 @@ public class AccountingDaoFilter {
     /**
      * @return The user this {@link AccountingDaoFilter} is set to filter on
      */
-    public int getUser() {
+    public User getUser() {
         return user;
     }
 
@@ -42,7 +43,7 @@ public class AccountingDaoFilter {
      *            The user for this {@link AccountingDaoFilter} to filter on
      * @return This {@link AccountingDaoFilter}
      */
-    public AccountingDaoFilter setUser(int user) {
+    public AccountingDaoFilter setUser(User user) {
         this.user = user;
         return this;
     }

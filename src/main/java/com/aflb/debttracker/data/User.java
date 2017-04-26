@@ -1,13 +1,19 @@
 package com.aflb.debttracker.data;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "T_USERS")
@@ -27,15 +33,15 @@ public class User {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    private List<AccountEntry> accountEntries;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @Cascade({CascadeType.ALL})
+    private List<AccountEntry> accountEntries;
 
-    /**
-     * Prevent @link {@link User}s from being created without required
-     * data.
-     */
-	@SuppressWarnings("unused")
-	private User() {
+//    /**
+//     * Prevent @link {@link User}s from being created without required
+//     * data.
+//     */
+	public User() {
 		
 	}
 
@@ -133,18 +139,18 @@ public class User {
 		this.description = description;
 	}
 
-//	/**
-//	 * @return the accountEntries
-//	 */
-//	public List<AccountEntry> getAccountEntries() {
-//		return accountEntries;
-//	}
-//
-//	/**
-//	 * @param accountEntries the accountEntries to set
-//	 */
-//	public void setAccountEntries(List<AccountEntry> accountEntries) {
-//		this.accountEntries = accountEntries;
-//	}
+	/**
+	 * @return the accountEntries
+	 */
+	public List<AccountEntry> getAccountEntries() {
+		return accountEntries;
+	}
+
+	/**
+	 * @param accountEntries the accountEntries to set
+	 */
+	public void setAccountEntries(List<AccountEntry> accountEntries) {
+		this.accountEntries = accountEntries;
+	}
 
 }

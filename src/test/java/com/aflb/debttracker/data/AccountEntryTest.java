@@ -19,7 +19,7 @@ import com.aflb.debttracker.data.AccountEntry.AccountEntryIncompleteException;
  */
 public class AccountEntryTest {
 
-	private int user = 1;
+	private static final User user = new User("boom");
 
     /**
      * Test method for {@link com.aflb.debttracker.data.AccountEntry#AccountEntry(java.lang.String, double, java.util.Date, java.lang.String)}.
@@ -101,7 +101,7 @@ public class AccountEntryTest {
     @Test
     public void testValidateUserFail() {
         AccountEntry entry = new AccountEntry(user, -10);
-        entry.setUser(0);
+        entry.setUser(null);
         try {
             entry.validate();
         } catch (AccountEntryIncompleteException e) {
@@ -116,7 +116,7 @@ public class AccountEntryTest {
     @Test
     public void testValidateValueFail() {
         AccountEntry entry = new AccountEntry(user, 0);
-        entry.setUser(0);
+        entry.setUser(null);
         try {
             entry.validate();
         } catch (AccountEntryIncompleteException e) {
@@ -149,7 +149,7 @@ public class AccountEntryTest {
         AccountEntry entry = new AccountEntry(user, 10, date, "description");
         
         String expected =
-                "{\"name\":\"1\","
+                "{\"name\":\"" + user.getName() + "\","
                 + "\"value\":\"10.00\","
                 + "\"type\":\"Credit\","
                 + "\"date\":\"" + date.toString() + "\","
@@ -167,7 +167,7 @@ public class AccountEntryTest {
         AccountEntry entry = new AccountEntry(user, -10, date, "description");
         
         String expected =
-                "{\"name\":\"1\","
+                "{\"name\":\"" + user.getName() + "\","
                 + "\"value\":\"-10.00\","
                 + "\"type\":\"Debit\","
                 + "\"date\":\"" + date.toString() + "\","

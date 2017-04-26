@@ -13,6 +13,7 @@ import javax.persistence.criteria.Root;
 
 import com.aflb.debttracker.data.AccountEntry;
 import com.aflb.debttracker.data.AccountEntryType;
+import com.aflb.debttracker.data.User;
 import com.aflb.debttracker.data.dao.AccountingDao;
 import com.aflb.debttracker.data.dao.AccountingDaoFilter;
 
@@ -38,8 +39,8 @@ public class AccountingDaoHibernate implements AccountingDao {
 		CriteriaQuery<AccountEntry> criteria = builder.createQuery(AccountEntry.class);
 		Root<AccountEntry> accountEntriesRoot = criteria.from(AccountEntry.class);
 		criteria.select(accountEntriesRoot);
-		if (filter.getUser() > 0) {
-			criteria.where(builder.equal(accountEntriesRoot.get("user"), filter.getUser()));
+		if (filter.getUser() != null && !filter.getUser().getName().isEmpty()) {
+			criteria.where(builder.equal(accountEntriesRoot.get("user"), filter.getUser().getId()));
 		}
 		// TODO Add date formatter and filter
 //		if (filter.getFromDate() != null) {
@@ -51,7 +52,7 @@ public class AccountingDaoHibernate implements AccountingDao {
 		return criteria;
 	}
 	
-	private List<AccountEntry> getEntries(final int user, final AccountEntryType type, final Date date) {
+	private List<AccountEntry> getEntries(final User user, final AccountEntryType type, final Date date) {
 		AccountingDaoFilter filter = new AccountingDaoFilter()
 				.setUser(user)
 				.setType(type)
@@ -63,7 +64,7 @@ public class AccountingDaoHibernate implements AccountingDao {
 	 * @see com.aflb.debttracker.data.dao.AccountingDao#getEntries(java.lang.String)
 	 */
 	@Override
-	public List<AccountEntry> getEntries(final int user) {
+	public List<AccountEntry> getEntries(final User user) {
 		return getEntries(user, null, null);
 	}
 
@@ -72,7 +73,7 @@ public class AccountingDaoHibernate implements AccountingDao {
 	 */
 	@Override
 	public List<AccountEntry> getEntries(final AccountEntryType type) {
-		return getEntries(0, type, null);
+		return getEntries(null, type, null);
 	}
 
 	/* (non-Javadoc)
@@ -80,14 +81,14 @@ public class AccountingDaoHibernate implements AccountingDao {
 	 */
 	@Override
 	public List<AccountEntry> getEntries(final Date date) {
-		return getEntries(0, null, date);
+		return getEntries(null, null, date);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.aflb.debttracker.data.dao.AccountingDao#getBalance(java.lang.String)
 	 */
 	@Override
-	public double getBalance(final int user) {
+	public double getBalance(final User user) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -96,7 +97,7 @@ public class AccountingDaoHibernate implements AccountingDao {
 	 * @see com.aflb.debttracker.data.dao.AccountingDao#getLastEntry(java.lang.String)
 	 */
 	@Override
-	public AccountEntry getLastEntry(final int user) {
+	public AccountEntry getLastEntry(final User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -105,7 +106,7 @@ public class AccountingDaoHibernate implements AccountingDao {
 	 * @see com.aflb.debttracker.data.dao.AccountingDao#getLastEntry(java.lang.String, com.aflb.debttracker.data.AccountEntryType)
 	 */
 	@Override
-	public AccountEntry getLastEntry(final int user, final AccountEntryType type) {
+	public AccountEntry getLastEntry(final User user, final AccountEntryType type) {
 		return null;
 	}
 

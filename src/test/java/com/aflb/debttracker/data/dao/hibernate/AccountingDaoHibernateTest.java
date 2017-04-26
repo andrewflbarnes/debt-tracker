@@ -4,8 +4,11 @@
 package com.aflb.debttracker.data.dao.hibernate;
 
 import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -16,6 +19,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.aflb.debttracker.data.AccountEntry;
+import com.aflb.debttracker.data.User;
 import com.aflb.debttracker.data.dao.AccountingDao;
 /**
  * @author Barnesly
@@ -53,17 +57,37 @@ public class AccountingDaoHibernateTest {
 
 	@Test
 	public void test() {
+		User barnes = new User("barnes");
+		List<AccountEntry> entries = new ArrayList<>(1);
+
+		// Add user and account entry records
+		//TODO Use real SQL statements to add the data as adding in this way
+		// is dependedant on another feature which needs testing
+		AccountEntry entry = new AccountEntry(barnes, 10, new Date(), "test");
+		entries.add(entry);
+		barnes.setAccountEntries(entries);
+		
 		AccountingDao dao = new AccountingDaoHibernate();
-		int barnes = 1;
-		AccountEntry entry = new AccountEntry(1, 10, new Date(), "test");
 		EntityManager em = dao.createEntityManager();
-		em.persist(entry);
+
+		em.getTransaction().begin();
+		em.persist(barnes);
+		em.flush();
+		em.getTransaction().commit();
+		
+		AccountEntry returnedEntry = null;
 		try {
-			dao.getEntries(barnes);
+			//TODO use .equals() once we ahve overridden appropriate methods
+			 returnedEntry = dao.getEntries(barnes).get(0);
 		} catch (Throwable th){
 			fail(th.getMessage());
 		}
 		em.close();
+
+		assertEquals(entry.getValue(), returnedEntry.getValue(), 0.001);
+		assertEquals(entry.getDescription(), returnedEntry.getDescription());
+		assertEquals(entry.getType().toString(), returnedEntry.getType().toString());
+		assertEquals(entry.getDate().toString(), returnedEntry.getDate().toString());
 	}
 
 }

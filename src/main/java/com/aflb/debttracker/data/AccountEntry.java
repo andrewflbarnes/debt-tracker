@@ -4,11 +4,17 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  * @author Barnesly
@@ -39,8 +45,10 @@ public class AccountEntry {
 //    @JoinColumn(name = "USER_ID")
 //    private User user;
 
-    @Column(name = "USER_ID")
-    private int user = 0;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    @Cascade({CascadeType.ALL})
+    private User user;
     
     @Column(name = "VAL")
     private double value = 0;
@@ -77,7 +85,7 @@ public class AccountEntry {
      * @param description
      *            The description of this {@link AccountEntry}
      */
-    public AccountEntry(int user, double value, Date date, String description) {
+    public AccountEntry(User user, double value, Date date, String description) {
         this.user = user;
         // Use setValue to ensure the type is correctly set
         setValue(value);
@@ -97,7 +105,7 @@ public class AccountEntry {
      * @param date
      *            The date of this {@link AccountEntry}
      */
-    public AccountEntry(int user, double value, Date date) {
+    public AccountEntry(User user, double value, Date date) {
         this(user, value, date, DEFAULT_DESCRIPTION);
     }
 
@@ -113,7 +121,7 @@ public class AccountEntry {
      * @param description
      *            The description of this {@link AccountEntry}
      */
-    public AccountEntry(int user, double value, String description) {
+    public AccountEntry(User user, double value, String description) {
         this(user, value, new Date(), description);
     }
     
@@ -126,7 +134,7 @@ public class AccountEntry {
      * @param value
      *            The value of this {@link AccountEntry}
      */
-    public AccountEntry(int user, double value) {
+    public AccountEntry(User user, double value) {
         this(user, value, new Date(), DEFAULT_DESCRIPTION);
     }
     
@@ -149,7 +157,7 @@ public class AccountEntry {
      * @throws AccountEntryIncompleteException if the required fields are not set.
      */
     public void validate() throws AccountEntryIncompleteException {
-        if (this.user == 0) {
+        if (this.user == null) {
             throw new AccountEntryIncompleteException("User is not set");
         }
         if (this.value == 0) {
@@ -177,7 +185,7 @@ public class AccountEntry {
         
         builder
             .append("{")
-            .append("\"name\":\"").append(this.user).append("\"")
+            .append("\"name\":\"").append(this.user.getName().toString()).append("\"")
             .append(",")
             .append("\"value\":\"").append(String.format("%.2f", this.value)).append("\"")
             .append(",")
@@ -247,7 +255,7 @@ public class AccountEntry {
     /**
      * @return the user this {@link AccountEntry} is for.
      */
-    public int getUser() {
+    public User getUser() {
         return user;
     }
 
@@ -256,7 +264,7 @@ public class AccountEntry {
      * 
      * @param user The user this enty is for.
      */
-    public void setUser(int user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 
 import com.aflb.debttracker.data.AccountEntry;
 import com.aflb.debttracker.data.AccountEntryType;
+import com.aflb.debttracker.data.User;
 
 /**
  * @author Barnesly
@@ -21,7 +22,7 @@ public interface AccountingDao {
      *            The user to retrieve {@link AccountEntry}s for
      * @return A list of {@link AccountEntry}s belonging to the {@code user}
      */
-    List<AccountEntry> getEntries(int user);
+    List<AccountEntry> getEntries(User user);
 
     /**
      * Get {@link AccountEntry}s of the specific {@link AccountEntryType}
@@ -61,7 +62,7 @@ public interface AccountingDao {
      *            The {@code user} to get the balance for
      * @return The balance of the users account
      */
-    double getBalance(int user);
+    double getBalance(User user);
     
     /**
      * Retrieve the last {@link AccountEntry} for a {@code user}
@@ -70,7 +71,7 @@ public interface AccountingDao {
      *            The {@code user} to get the last entry for
      * @return
      */
-    AccountEntry getLastEntry(int user);
+    AccountEntry getLastEntry(User user);
     
     /**
      * Retrieve the last {@link AccountEntry} for a {@code user} of the provided
@@ -82,7 +83,7 @@ public interface AccountingDao {
      *            The {@link AccountEntryType} of the last entry to retrieve
      * @return
      */
-    AccountEntry getLastEntry(int user, AccountEntryType type);
+    AccountEntry getLastEntry(User user, AccountEntryType type);
     
     /**
      * TODO
