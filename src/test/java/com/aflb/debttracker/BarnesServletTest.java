@@ -4,8 +4,13 @@
 package com.aflb.debttracker;
 
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.matches;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,10 +18,6 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -39,34 +40,6 @@ public class BarnesServletTest {
     private BarnesServlet servlet = new BarnesServlet();
 
     /**
-     * @throws java.lang.Exception
-     */
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-    }
-
-    /**
-     * @throws java.lang.Exception
-     */
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-    }
-
-    /**
-     * @throws java.lang.Exception
-     */
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    /**
-     * @throws java.lang.Exception
-     */
-    @After
-    public void tearDown() throws Exception {
-    }
-
-    /**
      * Test method for {@link com.aflb.debttracker.BarnesServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)}.
      */
     @Test
@@ -74,16 +47,18 @@ public class BarnesServletTest {
 
         try {
             when(httpRequest.getParameter("name")).thenReturn("boom");
+            when(httpRequest.getParameter("password")).thenReturn("pword");
             doNothing().when(httpResponse).setContentType(any(String.class));
             when(httpResponse.getWriter()).thenReturn(writer);
             doNothing().when(writer).println(any(String.class));
             
             servlet.doGet(httpRequest, httpResponse);
             
-            verify(httpRequest).getParameter("name");
-            verify(httpResponse).setContentType(any(String.class));
-            verify(httpResponse, atLeast(1)).getWriter();
+            verify(httpRequest, times(1)).getParameter("name");
+            verify(httpResponse, times(1)).setContentType(any(String.class));
+            verify(httpResponse, atLeast(2)).getWriter();
             verify(writer).println(matches(".*\"name\" *: *\"boom\".*"));
+            verify(writer).println(matches(".*\"pass\" *: *\"pword\".*"));
         } catch (IOException e) {
             fail("Exception thrown: " + e.getMessage());
         }

@@ -27,6 +27,9 @@ public class User {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+//    private List<AccountEntry> accountEntries;
+
     /**
      * Prevent @link {@link User}s from being created without required
      * data.
@@ -129,5 +132,19 @@ public class User {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+//	/**
+//	 * @return the accountEntries
+//	 */
+//	public List<AccountEntry> getAccountEntries() {
+//		return accountEntries;
+//	}
+//
+//	/**
+//	 * @param accountEntries the accountEntries to set
+//	 */
+//	public void setAccountEntries(List<AccountEntry> accountEntries) {
+//		this.accountEntries = accountEntries;
+//	}
 
 }

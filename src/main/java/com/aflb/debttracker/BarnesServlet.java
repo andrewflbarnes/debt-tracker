@@ -19,6 +19,7 @@ public class BarnesServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = req.getParameter("name");
+        String pass = req.getParameter("password");
 //        
 //        Calendar cal = Calendar.getInstance();
 //        cal.add(Calendar.MONTH, -numberMonths);
@@ -31,6 +32,7 @@ public class BarnesServlet extends HttpServlet {
         
         resp.setContentType("text/plain");
         resp.getWriter().println("{ \"name\": \"" + name + "\" ,");
+        resp.getWriter().println("{ \"pass\": \"" + pass + "\" ,");
         resp.getWriter().println(" \"class\": \"" + BarnesServlet.class.toString() + "\" }");
     }
     
