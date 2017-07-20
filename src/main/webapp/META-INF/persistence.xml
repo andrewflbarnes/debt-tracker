@@ -3,12 +3,12 @@
   version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
   <persistence-unit name="debttracker" transaction-type="RESOURCE_LOCAL">
     <description>debttracker hibernate</description>
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+<!--     <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
     <class>com.aflb.debttracker.data.User</class>
     <class>com.aflb.debttracker.data.AccountEntry</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-      <property name="javax.persistence.jdbc.url"    value="jdbc:h2:~/databases_prod/H2/debt_tracker;DB_CLOSE_DELAY=-1" />
+      <property name="javax.persistence.jdbc.url"    value="jdbc:h2:tcp://172.16.0.130/~/databases_prod/H2/debt_tracker;DB_CLOSE_DELAY=-1" />
       <property name="javax.persistence.jdbc.user" value="sa" />
       <property name="javax.persistence.jdbc.password" value="sa" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>

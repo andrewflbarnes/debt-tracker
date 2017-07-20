@@ -152,5 +152,24 @@ public class User {
 	public void setAccountEntries(List<AccountEntry> accountEntries) {
 		this.accountEntries = accountEntries;
 	}
+    
+    /**
+     * TODO
+     * @return
+     */
+    public String toJson() {
+        StringBuilder builder = new StringBuilder(16384);
+        
+        builder
+            .append("{")
+            .append("\"name\":\"").append(this.getName().toString()).append("\"")
+            .append(",")
+            .append("\"date\":\"").append(this.date).append("\"")
+            .append(",")
+            .append("\"description\":\"").append(this.description).append("\"")
+            .append("}");
+        
+        return builder.toString();
+    }
 
 }

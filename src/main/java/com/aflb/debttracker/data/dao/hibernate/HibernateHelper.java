@@ -21,14 +21,13 @@ public class HibernateHelper {
 	
 	private static EntityManagerFactory entityManagerFactory;
 	private static final Logger logger = LoggerFactory.getLogger(HibernateHelper.class);
-
 	static {
-		try {
+//		try {
 			entityManagerFactory = Persistence.createEntityManagerFactory("debttracker");
-		} catch (Throwable th) {
-			logger.error("Unable to create SessionFactory: " + th.getMessage());
-			throw new ExceptionInInitializerError(th);
-		}
+//		} catch (Throwable th) {
+//			logger.error("Unable to create SessionFactory: " + th.getMessage());
+//			throw new ExceptionInInitializerError(th);
+//		}
 	}
 	
 	/**

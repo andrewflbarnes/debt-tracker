@@ -99,6 +99,11 @@
       <version>5.2.10.Final</version>
     </dependency>
     <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.2.10.Final</version>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>1.7.25</version>
@@ -127,6 +132,11 @@
               <directory>${basedir}/src/main/webapp/WEB-INF</directory>
               <filtering>true</filtering>
               <targetPath>WEB-INF</targetPath>
+            </resource>
+            <resource>
+              <directory>${basedir}/src/main/webapp/META-INF</directory>
+              <filtering>true</filtering>
+              <targetPath>WEB-INF/classes/META-INF</targetPath>
             </resource>
           </webResources>
         </configuration>

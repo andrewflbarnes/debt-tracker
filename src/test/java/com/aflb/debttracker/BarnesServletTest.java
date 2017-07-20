@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
@@ -35,8 +36,8 @@ public class BarnesServletTest {
     @Mock
     private HttpServletResponse httpResponse;
     @Mock
-    PrintWriter writer;
-    
+    private PrintWriter writer;
+    @Spy
     private BarnesServlet servlet = new BarnesServlet();
 
     /**
