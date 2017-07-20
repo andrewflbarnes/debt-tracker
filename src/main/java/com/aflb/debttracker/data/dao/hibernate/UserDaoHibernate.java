@@ -32,11 +32,26 @@ public class UserDaoHibernate implements UserDao {
 		criteria.select(userRoot);
 		return entityManager.createQuery(criteria).getResultList();
 	}
-
+	
 	@Override
-	public EntityManager createEntityManager() {
+	public EntityManager init() {
 		entityManager = HibernateHelper.createEntityManager();
 		return entityManager;
+	}
+	
+	@Override
+	public void begin() {
+		entityManager.getTransaction().begin();
+	}
+	
+	@Override
+	public void commit() {
+		entityManager.getTransaction().commit();
+	}
+
+	@Override
+	public void close() {
+        entityManager.close();
 	}
 
 }

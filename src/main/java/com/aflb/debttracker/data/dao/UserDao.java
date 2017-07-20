@@ -17,8 +17,11 @@ public interface UserDao {
      */
     List<User> getUsers();
     
-    /**
-     * @return the {@link EntityManager to user with transactions
-     */
-    public EntityManager createEntityManager();
+    EntityManager init();
+    
+    void begin();
+    
+    void commit();
+    
+    void close();
 }

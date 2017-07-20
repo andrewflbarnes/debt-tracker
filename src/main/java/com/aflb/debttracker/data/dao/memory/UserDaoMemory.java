@@ -27,8 +27,17 @@ public class UserDaoMemory implements UserDao {
 	}
 
 	@Override
-	public EntityManager createEntityManager() {
+	public EntityManager init() {
 		return null;
 	}
+	
+	@Override
+	public void begin() {}
+	
+	@Override
+	public void commit() {}
+	
+	@Override
+	public void close() {}
 
 }

@@ -33,7 +33,7 @@ public class UserDaoHibernateTest {
 
 	@Before
 	public void setUp() throws Exception {
-		em = dao.createEntityManager();
+		em = dao.init();
 		clearTables(em);
 	}
 

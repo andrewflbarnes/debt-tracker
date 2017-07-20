@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,11 +27,12 @@ public class BarnesServlet extends HttpServlet {
         String name = req.getParameter("name");
         String pass = req.getParameter("password");
         
-        EntityManager em = userDao.createEntityManager();
-        em.getTransaction().begin();
+        
+        userDao.init();
+        userDao.begin();
         List<User> users = userDao.getUsers();
-        em.getTransaction().commit();
-        em.close();
+        userDao.commit();
+        userDao.close();
         
         resp.setContentType("text/plain");
         PrintWriter writer = resp.getWriter();
