@@ -11,11 +11,13 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.aflb.debttracker.data.User;
 import com.aflb.debttracker.data.dao.UserDao;
 
+@Ignore
 public class UserDaoHibernateTest {
 	private static UserDao dao;
 	private static EntityManager em;

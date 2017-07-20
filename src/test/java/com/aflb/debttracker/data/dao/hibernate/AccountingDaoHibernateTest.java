@@ -15,6 +15,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.aflb.debttracker.data.AccountEntry;
@@ -24,6 +25,7 @@ import com.aflb.debttracker.data.dao.AccountingDao;
  * @author Barnesly
  *
  */
+@Ignore
 public class AccountingDaoHibernateTest {
 	private static AccountingDao dao;
 	private static EntityManager em;
